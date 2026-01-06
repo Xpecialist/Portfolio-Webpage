@@ -43,16 +43,7 @@ const Hero = () => {
                 </motion.div>
             </div>
 
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1, duration: 1 }}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce"
-            >
-                <div className="w-6 h-10 border-2 border-gray-500 rounded-full flex justify-center p-2">
-                    <div className="w-1 h-3 bg-gray-500 rounded-full" />
-                </div>
-            </motion.div>
+
         </section>
     );
 };
