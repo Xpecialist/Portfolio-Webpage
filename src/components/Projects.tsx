@@ -61,14 +61,13 @@ const Projects = () => {
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
-            const containerWidth = scrollContainerRef.current.clientWidth;
-            // Scroll one item width roughly (approx 1/3 of container on desktop)
-            const scrollAmount = containerWidth / 3;
+            const container = scrollContainerRef.current;
+            const scrollAmount = container.clientWidth / 3;
             const newScrollLeft = direction === 'left'
-                ? scrollContainerRef.current.scrollLeft - scrollAmount
-                : scrollContainerRef.current.scrollLeft + scrollAmount;
+                ? container.scrollLeft - scrollAmount
+                : container.scrollLeft + scrollAmount;
 
-            scrollContainerRef.current.scrollTo({
+            container.scrollTo({
                 left: newScrollLeft,
                 behavior: 'smooth'
             });
@@ -82,19 +81,25 @@ const Projects = () => {
         setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
         setScrollLeft(scrollContainerRef.current.scrollLeft);
         scrollContainerRef.current.style.cursor = 'grabbing';
+        // Disable smooth scroll during drag for instant response
+        scrollContainerRef.current.style.scrollBehavior = 'auto';
     };
 
     const handleMouseLeave = () => {
+        if (!isDragging) return;
         setIsDragging(false);
         if (scrollContainerRef.current) {
             scrollContainerRef.current.style.cursor = 'grab';
+            scrollContainerRef.current.style.scrollBehavior = 'smooth';
         }
     };
 
     const handleMouseUp = () => {
+        if (!isDragging) return;
         setIsDragging(false);
         if (scrollContainerRef.current) {
             scrollContainerRef.current.style.cursor = 'grab';
+            scrollContainerRef.current.style.scrollBehavior = 'smooth';
         }
     };
 
@@ -102,7 +107,7 @@ const Projects = () => {
         if (!isDragging || !scrollContainerRef.current) return;
         e.preventDefault();
         const x = e.pageX - scrollContainerRef.current.offsetLeft;
-        const walk = (x - startX) * 2; // Scroll speed multiplier
+        const walk = (x - startX) * 1.5; // Adjusted scroll speed multiplier
         scrollContainerRef.current.scrollLeft = scrollLeft - walk;
     };
 
@@ -141,7 +146,7 @@ const Projects = () => {
                     {/* Scroll Container */}
                     <div
                         ref={scrollContainerRef}
-                        className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar cursor-grab active:cursor-grabbing"
+                        className="flex overflow-x-auto gap-6 pb-8 hide-scrollbar cursor-grab active:cursor-grabbing"
                         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                         onMouseDown={handleMouseDown}
                         onMouseLeave={handleMouseLeave}
@@ -155,11 +160,11 @@ const Projects = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                // Width logic: Mobile = full, md = 1/2, lg = 1/3. 
-                                // Subtracting gap approximation from calc to ensure dragging feels right
-                                className="min-w-[85vw] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-center bg-surface rounded-xl overflow-hidden border border-white/5 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 flex-shrink-0 select-none"
+                                // Exact width calculation: (100% - (2 * gap)) / 3
+                                // gap-6 is 1.5rem (24px). For 3 items we have 2 gaps effectively visible between 3 items.
+                                className="min-w-[85vw] md:min-w-[calc((100%-24px)/2)] lg:min-w-[calc((100%-48px)/3)] bg-surface rounded-xl overflow-hidden border border-white/5 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 flex-shrink-0 select-none flex flex-col"
                             >
-                                <div className="relative h-48 overflow-hidden pointer-events-none"> {/* Disable pointer events on image to prevent drag conflicts */}
+                                <div className="relative h-48 overflow-hidden pointer-events-none shrink-0">
                                     <img
                                         src={project.image}
                                         alt={project.title}
@@ -168,11 +173,11 @@ const Projects = () => {
                                     <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
                                 </div>
 
-                                <div className="p-6">
+                                <div className="p-6 flex flex-col flex-grow">
                                     <h3 className="text-xl font-bold mb-2 group-hover:text-secondary transition-colors">{project.title}</h3>
-                                    <p className="text-gray-400 mb-4 text-sm line-clamp-3">{project.description}</p>
+                                    <p className="text-gray-400 mb-4 text-sm line-clamp-3 flex-grow">{project.description}</p>
 
-                                    <div className="flex flex-wrap gap-2 mb-6">
+                                    <div className="flex flex-wrap gap-2 mb-6 mt-auto">
                                         {project.tags.map(tag => (
                                             <span key={tag} className="text-xs font-medium px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10">
                                                 {tag}
@@ -180,13 +185,13 @@ const Projects = () => {
                                         ))}
                                     </div>
 
-                                    <div className="flex items-center gap-4">
+                                    <div className="flex items-center gap-4 mt-auto">
                                         <a
                                             href={project.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                                            onMouseDown={(e) => e.stopPropagation()} // Allow clicking links without dragging
+                                            onMouseDown={(e) => e.stopPropagation()}
                                         >
                                             <Github size={18} /> Code
                                         </a>
