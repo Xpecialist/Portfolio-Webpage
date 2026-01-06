@@ -32,7 +32,7 @@ const Hero = () => {
                             View Work <ArrowRight size={20} />
                         </a>
                         <a
-                            href="/cv.pdf"
+                            href="cv.pdf"
                             className="px-8 py-3 rounded-full border border-gray-700 hover:border-gray-500 hover:bg-gray-800/50 text-white font-medium transition-all flex items-center gap-2"
                         >
                             Download CV <Download size={20} />
