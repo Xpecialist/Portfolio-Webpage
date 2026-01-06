@@ -136,7 +136,7 @@ const Projects = () => {
                 {/* Left Button */}
                 <button
                     onClick={() => scroll('left')}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block backdrop-blur-sm border border-white/10"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-surface/30 p-3 rounded-full hover:bg-primary/80 transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block backdrop-blur-md border border-white/10 shadow-lg"
                 >
                     <ChevronLeft size={24} />
                 </button>
