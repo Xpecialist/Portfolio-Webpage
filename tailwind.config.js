@@ -9,8 +9,8 @@ export default {
       colors: {
         background: "#0f172a", // Slate 950
         surface: "#1e293b", // Slate 800
-        primary: "#8b5cf6", // Violet 500
-        secondary: "#ec4899", // Pink 500
+        primary: "#10b981", // Emerald 500
+        secondary: "#84cc16", // Lime 500
         accent: "#06b6d4", // Cyan 500
       },
       fontFamily: {
