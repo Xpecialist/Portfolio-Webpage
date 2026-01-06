@@ -3,10 +3,13 @@ import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import covidImage from "../assets/covid-tracker.png";
 import gameImage from "../assets/area-15-game.png";
 import vrImage from "../assets/vr-project.png";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 const Projects = () => {
     const scrollContainerRef = useRef<HTMLDivElement>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [startX, setStartX] = useState(0);
+    const [scrollLeft, setScrollLeft] = useState(0);
 
     const projects = [
         {
@@ -58,7 +61,9 @@ const Projects = () => {
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
-            const scrollAmount = 400; // Adjust scroll amount as needed
+            const containerWidth = scrollContainerRef.current.clientWidth;
+            // Scroll one item width roughly (approx 1/3 of container on desktop)
+            const scrollAmount = containerWidth / 3;
             const newScrollLeft = direction === 'left'
                 ? scrollContainerRef.current.scrollLeft - scrollAmount
                 : scrollContainerRef.current.scrollLeft + scrollAmount;
@@ -69,6 +74,38 @@ const Projects = () => {
             });
         }
     };
+
+    // Mouse Drag Handlers
+    const handleMouseDown = (e: React.MouseEvent) => {
+        if (!scrollContainerRef.current) return;
+        setIsDragging(true);
+        setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+        setScrollLeft(scrollContainerRef.current.scrollLeft);
+        scrollContainerRef.current.style.cursor = 'grabbing';
+    };
+
+    const handleMouseLeave = () => {
+        setIsDragging(false);
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.style.cursor = 'grab';
+        }
+    };
+
+    const handleMouseUp = () => {
+        setIsDragging(false);
+        if (scrollContainerRef.current) {
+            scrollContainerRef.current.style.cursor = 'grab';
+        }
+    };
+
+    const handleMouseMove = (e: React.MouseEvent) => {
+        if (!isDragging || !scrollContainerRef.current) return;
+        e.preventDefault();
+        const x = e.pageX - scrollContainerRef.current.offsetLeft;
+        const walk = (x - startX) * 2; // Scroll speed multiplier
+        scrollContainerRef.current.scrollLeft = scrollLeft - walk;
+    };
+
 
     return (
         <section id="projects" className="py-20 text-white relative">
@@ -104,8 +141,12 @@ const Projects = () => {
                     {/* Scroll Container */}
                     <div
                         ref={scrollContainerRef}
-                        className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory hide-scrollbar"
+                        className="flex overflow-x-auto gap-6 pb-8 snap-x snap-mandatory hide-scrollbar cursor-grab active:cursor-grabbing"
                         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                        onMouseDown={handleMouseDown}
+                        onMouseLeave={handleMouseLeave}
+                        onMouseUp={handleMouseUp}
+                        onMouseMove={handleMouseMove}
                     >
                         {projects.map((project, index) => (
                             <motion.div
@@ -114,9 +155,11 @@ const Projects = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                className="min-w-[300px] md:min-w-[350px] lg:min-w-[400px] snap-center bg-surface rounded-xl overflow-hidden border border-white/5 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 flex-shrink-0"
+                                // Width logic: Mobile = full, md = 1/2, lg = 1/3. 
+                                // Subtracting gap approximation from calc to ensure dragging feels right
+                                className="min-w-[85vw] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] snap-center bg-surface rounded-xl overflow-hidden border border-white/5 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 flex-shrink-0 select-none"
                             >
-                                <div className="relative h-48 overflow-hidden">
+                                <div className="relative h-48 overflow-hidden pointer-events-none"> {/* Disable pointer events on image to prevent drag conflicts */}
                                     <img
                                         src={project.image}
                                         alt={project.title}
@@ -143,6 +186,7 @@ const Projects = () => {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                                            onMouseDown={(e) => e.stopPropagation()} // Allow clicking links without dragging
                                         >
                                             <Github size={18} /> Code
                                         </a>
@@ -152,6 +196,7 @@ const Projects = () => {
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                                                onMouseDown={(e) => e.stopPropagation()}
                                             >
                                                 <ExternalLink size={18} /> Live Demo
                                             </a>
