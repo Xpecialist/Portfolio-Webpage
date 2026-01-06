@@ -5,30 +5,48 @@ const Projects = () => {
     const projects = [
         {
             id: 1,
-            title: "E-Commerce Platform",
-            description: "A full-featured online store with cart functionality, payment gateway integration, and admin dashboard.",
-            tags: ["React", "Node.js", "MongoDB", "Stripe"],
-            github: "https://github.com",
-            demo: "https://demo.com",
-            image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80"
+            title: "VR Pedestrian Behavior",
+            description: "Final Thesis: Evaluation of Pedestrian Behavior in Virtual Reality for Traffic Education Using Eye Tracking.",
+            tags: ["VR", "Research", "C#", "Unity"],
+            github: "https://github.com/Xpecialist/Evaluation-of-Pedestrian-Behavior-in-Virtual-Reality-for-Traffic-Education-Using-Eye-Tracking",
+            demo: "#",
+            image: "https://images.unsplash.com/photo-1592478411213-61535fca3db8?w=800&q=80"
         },
         {
             id: 2,
-            title: "Task Management App",
-            description: "Collaborative project management tool with real-time updates, kanban boards, and team chat.",
-            tags: ["Next.js", "TypeScript", "Tailwind", "Firebase"],
-            github: "https://github.com",
-            demo: "https://demo.com",
-            image: "https://images.unsplash.com/photo-1540350394557-8d14678e7f91?w=800&q=80"
+            title: "Area 15: Run for your life!",
+            description: "A 2D platformer video game developed using Python as part of a software engineering project.",
+            tags: ["Python", "Game Dev"],
+            github: "https://github.com/Xpecialist/SoftwareEngineeringProject",
+            demo: "#",
+            image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80"
         },
         {
             id: 3,
-            title: "AI Image Generator",
-            description: "Web application that uses AI to generate unique images based on text prompts using OpenAI API.",
-            tags: ["React", "Python", "FastAPI", "OpenAI"],
-            github: "https://github.com",
-            demo: "https://demo.com",
-            image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80"
+            title: "Activity on Cloud",
+            description: "Booking Engine for activities. React & Tailwind for frontend, Spring API for backend. Includes Admin interface.",
+            tags: ["React", "Tailwind", "Springboot"],
+            github: "https://github.com/Xpecialist/ActivityOnCloud",
+            demo: "#",
+            image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
+        },
+        {
+            id: 4,
+            title: "Covid-19 Tracker Map",
+            description: "Map-based website showing covid-free shops/areas. Tracks user location and displays status markers.",
+            tags: ["React", "Maps", "Web"],
+            github: "https://github.com/Xpecialist/WebProject",
+            demo: "#",
+            image: "https://images.unsplash.com/photo-1584483766114-2cea6fac257d?w=800&q=80"
+        },
+        {
+            id: 5,
+            title: "NoSQL Movie Database",
+            description: "Implementation of a NoSQL database with CassandraDB including complex queries for data retrieval.",
+            tags: ["NoSQL", "CassandraDB"],
+            github: "https://github.com/Xpecialist/bigDataProject",
+            demo: "#",
+            image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&q=80"
         }
     ];
 
@@ -86,14 +104,16 @@ const Projects = () => {
                                     >
                                         <Github size={18} /> Code
                                     </a>
-                                    <a
-                                        href={project.demo}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                                    >
-                                        <ExternalLink size={18} /> Live Demo
-                                    </a>
+                                    {project.demo !== "#" && (
+                                        <a
+                                            href={project.demo}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                                        >
+                                            <ExternalLink size={18} /> Live Demo
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </motion.div>

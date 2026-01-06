@@ -17,11 +17,13 @@ const Contact = () => {
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
                     <p className="text-gray-400 max-w-2xl mx-auto mb-8">
-                        I'm currently looking for new opportunities. Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                        Based in Patras, Greece. Available for remote work.
+                        <br />
+                        <span className="block mt-2">+30 6942533083</span>
                     </p>
 
                     <a
-                        href="mailto:hello@example.com"
+                        href="mailto:manolouk2010@gmail.com"
                         className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-primary hover:bg-emerald-600 text-white font-medium transition-colors"
                     >
                         <Mail size={20} />

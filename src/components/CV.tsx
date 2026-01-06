@@ -5,35 +5,32 @@ const CV = () => {
     const experiences = [
         {
             id: 1,
-            role: "Senior Frontend Developer",
-            company: "Tech Corp",
-            period: "2023 - Present",
-            description: "Leading the frontend team, building scalable React applications, and mentoring junior developers.",
-        },
-        {
-            id: 2,
-            role: "Full Stack Developer",
-            company: "Creative Agency",
-            period: "2021 - 2023",
-            description: "Developed full-stack web solutions using MERN stack, optimized database queries, and improved site performance.",
-        },
-        {
-            id: 3,
-            role: "Junior Developer",
-            company: "Startup Inc",
-            period: "2020 - 2021",
-            description: "Assisted in developing UI components, fixing bugs, and writing unit tests.",
+            role: "Full Stack Developer Intern",
+            company: "Knowledge A.E.",
+            period: "March 2024 - May 2024",
+            description: "Implemented various APIs using Java and developed a functional Booking Engine for an early company project using React and Springboot API. Successfully cooperated with a team of developers using the SCRUM method to manage and organize work.",
         },
     ];
 
     const education = [
         {
             id: 1,
-            degree: "Information Technology",
-            school: "University of Technology",
-            period: "2016 - 2020",
-            description: "Specialized in Software Engineering and Web Technologies.",
+            degree: "Computer Engineer & Informatics (Integrated Masters)",
+            school: "University of Patras",
+            period: "2018 - 2024",
+            description: "EQF Level 7. Integrated Master's degree.",
         },
+        {
+            id: 2,
+            degree: "ETSI de Sistemas Informáticos",
+            school: "Universidad Politecnica de Madrid",
+            period: "2022 - 2023",
+            description: "International exchange program.",
+        },
+    ];
+
+    const skills = [
+        "Java", "C#", "Python", "Javascript", "React", "Springboot", "SQL", "NoSQL", "Git", "Agile/SCRUM"
     ];
 
     return (
@@ -68,7 +65,7 @@ const CV = () => {
                                     transition={{ delay: index * 0.1 }}
                                     className="bg-background/50 p-6 rounded-xl border border-white/5 hover:border-primary/50 transition-colors"
                                 >
-                                    <div className="flex justify-between items-start mb-2">
+                                    <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
                                         <h4 className="text-xl font-bold text-white">{exp.role}</h4>
                                         <span className="flex items-center text-sm text-gray-400 bg-surface px-3 py-1 rounded-full">
                                             <Calendar size={14} className="mr-2" />
@@ -79,6 +76,17 @@ const CV = () => {
                                     <p className="text-gray-400 leading-relaxed">{exp.description}</p>
                                 </motion.div>
                             ))}
+                        </div>
+
+                        <div className="mt-12">
+                            <h3 className="text-2xl font-semibold mb-6">Technical Skills</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {skills.map(skill => (
+                                    <span key={skill} className="px-3 py-1 bg-white/5 rounded-full text-sm text-gray-300 border border-white/10">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -99,7 +107,7 @@ const CV = () => {
                                     transition={{ delay: index * 0.1 }}
                                     className="bg-background/50 p-6 rounded-xl border border-white/5 hover:border-secondary/50 transition-colors"
                                 >
-                                    <div className="flex justify-between items-start mb-2">
+                                    <div className="flex justify-between items-start mb-2 flex-wrap gap-2">
                                         <h4 className="text-xl font-bold text-white">{edu.degree}</h4>
                                         <span className="flex items-center text-sm text-gray-400 bg-surface px-3 py-1 rounded-full">
                                             <Calendar size={14} className="mr-2" />

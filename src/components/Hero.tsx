@@ -18,12 +18,10 @@ const Hero = () => {
                         Welcome to my portfolio
                     </span>
                     <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white tracking-tight">
-                        I build <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">digital experiences</span>
-                        <br />
-                        that matter.
+                        Emmanouil <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">Loukakis</span>
                     </h1>
                     <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto">
-                        I'm a Full Stack Developer passionate about building accessible, pixel-perfect, and performant web applications.
+                        Computer Engineer & Informatics. Full Stack Developer.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
