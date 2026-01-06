@@ -62,9 +62,7 @@ const Projects = () => {
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
             const container = scrollContainerRef.current;
-            // Scroll by exactly one item width + gap
-            // Using logic designed for 3 items view
-            const scrollAmount = container.clientWidth / 3;
+            const scrollAmount = 400; // Fixed scroll amount
             const newScrollLeft = direction === 'left'
                 ? container.scrollLeft - scrollAmount
                 : container.scrollLeft + scrollAmount;
@@ -114,113 +112,110 @@ const Projects = () => {
 
 
     return (
-        <section id="projects" className="py-20 text-white relative">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="projects" className="py-20 text-white relative overflow-hidden">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="text-center mb-16"
+                    className="text-center"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
                     <div className="w-20 h-1 bg-secondary mx-auto rounded-full" />
                 </motion.div>
+            </div>
 
-                <div className="relative group">
-                    {/* Left Button */}
-                    <button
-                        onClick={() => scroll('left')}
-                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-colors hidden md:block backdrop-blur-sm border border-white/10"
-                    >
-                        <ChevronLeft size={24} />
-                    </button>
+            <div className="relative group w-full">
+                {/* Left Button */}
+                <button
+                    onClick={() => scroll('left')}
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-colors hidden md:block backdrop-blur-sm border border-white/10"
+                >
+                    <ChevronLeft size={24} />
+                </button>
 
-                    {/* Right Button */}
-                    <button
-                        onClick={() => scroll('right')}
-                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-colors hidden md:block backdrop-blur-sm border border-white/10"
-                    >
-                        <ChevronRight size={24} />
-                    </button>
+                {/* Right Button */}
+                <button
+                    onClick={() => scroll('right')}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-colors hidden md:block backdrop-blur-sm border border-white/10"
+                >
+                    <ChevronRight size={24} />
+                </button>
 
-                    {/* Scroll Container */}
-                    <div
-                        ref={scrollContainerRef}
-                        className="flex overflow-x-auto gap-6 pb-8 hide-scrollbar cursor-grab active:cursor-grabbing"
-                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                        onMouseDown={handleMouseDown}
-                        onMouseLeave={handleMouseLeave}
-                        onMouseUp={handleMouseUp}
-                        onMouseMove={handleMouseMove}
-                    >
-                        {projects.map((project, index) => (
-                            <motion.div
-                                key={project.id}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                                // Fixed Dimensions & Layout
-                                // Mobile: Full width
-                                // Tablet: 2 items (calc(50% - 12px)) -> 12px is half of 24px gap
-                                // Desktop: 3 items (calc(33.333% - 16px)) -> 16px is 2/3 of 24px gap (distributed)
-                                className="
-                                    flex-shrink-0 
-                                    w-[85vw] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]
-                                    h-[450px]
-                                    bg-surface rounded-xl overflow-hidden border border-white/5 
-                                    hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 
-                                    flex flex-col select-none
-                                "
-                            >
-                                <div className="relative h-56 overflow-hidden pointer-events-none shrink-0">
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
+                {/* Scroll Container */}
+                <div
+                    ref={scrollContainerRef}
+                    className="flex overflow-x-auto gap-6 pb-8 hide-scrollbar cursor-grab active:cursor-grabbing px-4 md:px-8"
+                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    onMouseDown={handleMouseDown}
+                    onMouseLeave={handleMouseLeave}
+                    onMouseUp={handleMouseUp}
+                    onMouseMove={handleMouseMove}
+                >
+                    {projects.map((project, index) => (
+                        <motion.div
+                            key={project.id}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 }}
+                            // Dimensions: Fixed width, not strictly 3 per screen
+                            className="
+                                flex-shrink-0 
+                                w-[85vw] md:w-[450px]
+                                h-[450px]
+                                bg-surface rounded-xl overflow-hidden border border-white/5 
+                                hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 
+                                flex flex-col select-none
+                            "
+                        >
+                            <div className="relative h-56 overflow-hidden pointer-events-none shrink-0">
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
+                            </div>
+
+                            <div className="p-5 flex flex-col flex-grow">
+                                <h3 className="text-xl font-bold mb-1 group-hover:text-secondary transition-colors line-clamp-1">{project.title}</h3>
+                                <p className="text-gray-400 mb-3 text-sm line-clamp-3 overflow-hidden">{project.description}</p>
+
+                                <div className="flex flex-wrap gap-2 mb-4 mt-auto content-end">
+                                    {project.tags.map(tag => (
+                                        <span key={tag} className="text-xs font-medium px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10">
+                                            {tag}
+                                        </span>
+                                    ))}
                                 </div>
 
-                                <div className="p-5 flex flex-col flex-grow">
-                                    <h3 className="text-xl font-bold mb-1 group-hover:text-secondary transition-colors line-clamp-1">{project.title}</h3>
-                                    <p className="text-gray-400 mb-3 text-sm line-clamp-3 overflow-hidden">{project.description}</p>
-
-                                    <div className="flex flex-wrap gap-2 mb-4 mt-auto content-end">
-                                        {project.tags.map(tag => (
-                                            <span key={tag} className="text-xs font-medium px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-
-                                    <div className="flex items-center gap-4 mt-auto">
+                                <div className="flex items-center gap-4 mt-auto">
+                                    <a
+                                        href={project.github}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                                        onMouseDown={(e) => e.stopPropagation()}
+                                    >
+                                        <Github size={18} /> Code
+                                    </a>
+                                    {project.demo !== "#" && (
                                         <a
-                                            href={project.github}
+                                            href={project.demo}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
                                             onMouseDown={(e) => e.stopPropagation()}
                                         >
-                                            <Github size={18} /> Code
+                                            <ExternalLink size={18} /> Live Demo
                                         </a>
-                                        {project.demo !== "#" && (
-                                            <a
-                                                href={project.demo}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                                                onMouseDown={(e) => e.stopPropagation()}
-                                            >
-                                                <ExternalLink size={18} /> Live Demo
-                                            </a>
-                                        )}
-                                    </div>
+                                    )}
                                 </div>
-                            </motion.div>
-                        ))}
-                    </div>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </div>
             <style>{`
