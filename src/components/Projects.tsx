@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
+import covidImage from "../assets/covid-tracker.png";
+import gameImage from "../assets/area-15-game.png";
 
 const Projects = () => {
     const projects = [
@@ -19,7 +21,7 @@ const Projects = () => {
             tags: ["Python", "Game Dev"],
             github: "https://github.com/Xpecialist/SoftwareEngineeringProject",
             demo: "#",
-            image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80"
+            image: gameImage
         },
         {
             id: 3,
@@ -37,7 +39,7 @@ const Projects = () => {
             tags: ["React", "Maps", "Web"],
             github: "https://github.com/Xpecialist/WebProject",
             demo: "#",
-            image: "https://images.unsplash.com/photo-1584483766114-2cea6fac257d?w=800&q=80"
+            image: covidImage
         },
         {
             id: 5,
