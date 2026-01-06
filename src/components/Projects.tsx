@@ -62,6 +62,8 @@ const Projects = () => {
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
             const container = scrollContainerRef.current;
+            // Scroll by exactly one item width + gap
+            // Using logic designed for 3 items view
             const scrollAmount = container.clientWidth / 3;
             const newScrollLeft = direction === 'left'
                 ? container.scrollLeft - scrollAmount
@@ -81,7 +83,6 @@ const Projects = () => {
         setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
         setScrollLeft(scrollContainerRef.current.scrollLeft);
         scrollContainerRef.current.style.cursor = 'grabbing';
-        // Disable smooth scroll during drag for instant response
         scrollContainerRef.current.style.scrollBehavior = 'auto';
     };
 
@@ -107,7 +108,7 @@ const Projects = () => {
         if (!isDragging || !scrollContainerRef.current) return;
         e.preventDefault();
         const x = e.pageX - scrollContainerRef.current.offsetLeft;
-        const walk = (x - startX) * 1.5; // Adjusted scroll speed multiplier
+        const walk = (x - startX) * 1.5;
         scrollContainerRef.current.scrollLeft = scrollLeft - walk;
     };
 
@@ -160,9 +161,18 @@ const Projects = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: index * 0.1 }}
-                                // Exact width calculation: (100% - (2 * gap)) / 3
-                                // gap-6 is 1.5rem (24px). For 3 items we have 2 gaps effectively visible between 3 items.
-                                className="min-w-[85vw] md:min-w-[calc((100%-24px)/2)] lg:min-w-[calc((100%-48px)/3)] bg-surface rounded-xl overflow-hidden border border-white/5 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 flex-shrink-0 select-none flex flex-col"
+                                // Fixed Dimensions & Layout
+                                // Mobile: Full width
+                                // Tablet: 2 items (calc(50% - 12px)) -> 12px is half of 24px gap
+                                // Desktop: 3 items (calc(33.333% - 16px)) -> 16px is 2/3 of 24px gap (distributed)
+                                className="
+                                    flex-shrink-0 
+                                    w-[85vw] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]
+                                    h-[450px]
+                                    bg-surface rounded-xl overflow-hidden border border-white/5 
+                                    hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 
+                                    flex flex-col select-none
+                                "
                             >
                                 <div className="relative h-48 overflow-hidden pointer-events-none shrink-0">
                                     <img
@@ -174,10 +184,10 @@ const Projects = () => {
                                 </div>
 
                                 <div className="p-6 flex flex-col flex-grow">
-                                    <h3 className="text-xl font-bold mb-2 group-hover:text-secondary transition-colors">{project.title}</h3>
-                                    <p className="text-gray-400 mb-4 text-sm line-clamp-3 flex-grow">{project.description}</p>
+                                    <h3 className="text-xl font-bold mb-2 group-hover:text-secondary transition-colors line-clamp-1">{project.title}</h3>
+                                    <p className="text-gray-400 mb-4 text-sm line-clamp-3 overflow-hidden">{project.description}</p>
 
-                                    <div className="flex flex-wrap gap-2 mb-6 mt-auto">
+                                    <div className="flex flex-wrap gap-2 mb-6 mt-auto content-end">
                                         {project.tags.map(tag => (
                                             <span key={tag} className="text-xs font-medium px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10">
                                                 {tag}
