@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Github, ExternalLink } from "lucide-react";
 import covidImage from "../assets/covid-tracker.png";
 import gameImage from "../assets/area-15-game.png";
+import vrImage from "../assets/vr-project.png";
 
 const Projects = () => {
     const projects = [
@@ -12,7 +13,7 @@ const Projects = () => {
             tags: ["VR", "Research", "C#", "Unity"],
             github: "https://github.com/Xpecialist/Evaluation-of-Pedestrian-Behavior-in-Virtual-Reality-for-Traffic-Education-Using-Eye-Tracking",
             demo: "#",
-            image: "https://images.unsplash.com/photo-1592478411213-61535fca3db8?w=800&q=80"
+            image: vrImage
         },
         {
             id: 2,
