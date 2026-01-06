@@ -62,13 +62,19 @@ const Projects = () => {
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current) {
             const container = scrollContainerRef.current;
-            const scrollAmount = 400; // Fixed scroll amount
-            const newScrollLeft = direction === 'left'
-                ? container.scrollLeft - scrollAmount
-                : container.scrollLeft + scrollAmount;
+            // Calculate stride: card width + gap (24px)
+            // Using 400px (md) or 85vw (mobile) approx, but best to read actual clientWidth of first child
+            const firstCard = container.firstElementChild as HTMLElement;
+            const stride = firstCard ? firstCard.clientWidth + 24 : 424;
+
+            const currentScroll = container.scrollLeft;
+            // Align to nearest stride multiple for "exact stop" feel
+            const targetScroll = direction === 'left'
+                ? Math.floor((currentScroll - 10) / stride) * stride
+                : Math.ceil((currentScroll + 10) / stride) * stride;
 
             container.scrollTo({
-                left: newScrollLeft,
+                left: targetScroll,
                 behavior: 'smooth'
             });
         }
@@ -130,7 +136,7 @@ const Projects = () => {
                 {/* Left Button */}
                 <button
                     onClick={() => scroll('left')}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-colors hidden md:block backdrop-blur-sm border border-white/10"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block backdrop-blur-sm border border-white/10"
                 >
                     <ChevronLeft size={24} />
                 </button>
@@ -138,7 +144,7 @@ const Projects = () => {
                 {/* Right Button */}
                 <button
                     onClick={() => scroll('right')}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-colors hidden md:block backdrop-blur-sm border border-white/10"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-all duration-300 opacity-0 group-hover:opacity-100 hidden md:block backdrop-blur-sm border border-white/10"
                 >
                     <ChevronRight size={24} />
                 </button>
@@ -160,10 +166,10 @@ const Projects = () => {
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            // Dimensions: Fixed width, not strictly 3 per screen
+                            // Dimensions: "Tad smaller" -> Reduced from 450px to 400px on desktop
                             className="
                                 flex-shrink-0 
-                                w-[85vw] md:w-[450px]
+                                w-[85vw] md:w-[400px]
                                 h-[450px]
                                 bg-surface rounded-xl overflow-hidden border border-white/5 
                                 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 
@@ -175,6 +181,7 @@ const Projects = () => {
                                     src={project.image}
                                     alt={project.title}
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    draggable="false"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
                             </div>
