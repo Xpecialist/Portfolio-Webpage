@@ -174,7 +174,7 @@ const Projects = () => {
                                     flex flex-col select-none
                                 "
                             >
-                                <div className="relative h-48 overflow-hidden pointer-events-none shrink-0">
+                                <div className="relative h-64 overflow-hidden pointer-events-none shrink-0">
                                     <img
                                         src={project.image}
                                         alt={project.title}
@@ -183,11 +183,11 @@ const Projects = () => {
                                     <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
                                 </div>
 
-                                <div className="p-6 flex flex-col flex-grow">
-                                    <h3 className="text-xl font-bold mb-2 group-hover:text-secondary transition-colors line-clamp-1">{project.title}</h3>
-                                    <p className="text-gray-400 mb-4 text-sm line-clamp-3 overflow-hidden">{project.description}</p>
+                                <div className="p-5 flex flex-col flex-grow">
+                                    <h3 className="text-xl font-bold mb-1 group-hover:text-secondary transition-colors line-clamp-1">{project.title}</h3>
+                                    <p className="text-gray-400 mb-3 text-sm line-clamp-3 overflow-hidden">{project.description}</p>
 
-                                    <div className="flex flex-wrap gap-2 mb-6 mt-auto content-end">
+                                    <div className="flex flex-wrap gap-2 mb-4 mt-auto content-end">
                                         {project.tags.map(tag => (
                                             <span key={tag} className="text-xs font-medium px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10">
                                                 {tag}
