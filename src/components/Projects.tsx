@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
-import { Github, ExternalLink } from "lucide-react";
+import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import covidImage from "../assets/covid-tracker.png";
 import gameImage from "../assets/area-15-game.png";
 import vrImage from "../assets/vr-project.png";
+import { useRef } from "react";
 
 const Projects = () => {
+    const scrollContainerRef = useRef<HTMLDivElement>(null);
+
     const projects = [
         {
             id: 1,
@@ -53,8 +56,22 @@ const Projects = () => {
         }
     ];
 
+    const scroll = (direction: 'left' | 'right') => {
+        if (scrollContainerRef.current) {
+            const scrollAmount = 400; // Adjust scroll amount as needed
+            const newScrollLeft = direction === 'left'
+                ? scrollContainerRef.current.scrollLeft - scrollAmount
+                : scrollContainerRef.current.scrollLeft + scrollAmount;
+
+            scrollContainerRef.current.scrollTo({
+                left: newScrollLeft,
+                behavior: 'smooth'
+            });
+        }
+    };
+
     return (
-        <section id="projects" className="py-20 text-white">
+        <section id="projects" className="py-20 text-white relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -67,62 +84,90 @@ const Projects = () => {
                     <div className="w-20 h-1 bg-secondary mx-auto rounded-full" />
                 </motion.div>
 
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project, index) => (
-                        <motion.div
-                            key={project.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            className="group bg-surface rounded-xl overflow-hidden border border-white/5 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2"
-                        >
-                            <div className="relative h-48 overflow-hidden">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
-                            </div>
+                <div className="relative group">
+                    {/* Left Button */}
+                    <button
+                        onClick={() => scroll('left')}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-colors hidden md:block backdrop-blur-sm border border-white/10"
+                    >
+                        <ChevronLeft size={24} />
+                    </button>
 
-                            <div className="p-6">
-                                <h3 className="text-xl font-bold mb-2 group-hover:text-secondary transition-colors">{project.title}</h3>
-                                <p className="text-gray-400 mb-4 text-sm line-clamp-3">{project.description}</p>
+                    {/* Right Button */}
+                    <button
+                        onClick={() => scroll('right')}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-surface/80 p-3 rounded-full hover:bg-primary transition-colors hidden md:block backdrop-blur-sm border border-white/10"
+                    >
+                        <ChevronRight size={24} />
+                    </button>
 
-                                <div className="flex flex-wrap gap-2 mb-6">
-                                    {project.tags.map(tag => (
-                                        <span key={tag} className="text-xs font-medium px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10">
-                                            {tag}
-                                        </span>
-                                    ))}
+                    {/* Scroll Container */}
+                    <div
+                        ref={scrollContainerRef}
+                        className="flex overflow-x-auto gap-8 pb-8 snap-x snap-mandatory hide-scrollbar"
+                        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    >
+                        {projects.map((project, index) => (
+                            <motion.div
+                                key={project.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: index * 0.1 }}
+                                className="min-w-[300px] md:min-w-[350px] lg:min-w-[400px] snap-center bg-surface rounded-xl overflow-hidden border border-white/5 hover:border-secondary/50 transition-all duration-300 hover:-translate-y-2 flex-shrink-0"
+                            >
+                                <div className="relative h-48 overflow-hidden">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80" />
                                 </div>
 
-                                <div className="flex items-center gap-4">
-                                    <a
-                                        href={project.github}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
-                                    >
-                                        <Github size={18} /> Code
-                                    </a>
-                                    {project.demo !== "#" && (
+                                <div className="p-6">
+                                    <h3 className="text-xl font-bold mb-2 group-hover:text-secondary transition-colors">{project.title}</h3>
+                                    <p className="text-gray-400 mb-4 text-sm line-clamp-3">{project.description}</p>
+
+                                    <div className="flex flex-wrap gap-2 mb-6">
+                                        {project.tags.map(tag => (
+                                            <span key={tag} className="text-xs font-medium px-2 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10">
+                                                {tag}
+                                            </span>
+                                        ))}
+                                    </div>
+
+                                    <div className="flex items-center gap-4">
                                         <a
-                                            href={project.demo}
+                                            href={project.github}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
                                         >
-                                            <ExternalLink size={18} /> Live Demo
+                                            <Github size={18} /> Code
                                         </a>
-                                    )}
+                                        {project.demo !== "#" && (
+                                            <a
+                                                href={project.demo}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors"
+                                            >
+                                                <ExternalLink size={18} /> Live Demo
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        </motion.div>
-                    ))}
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
+            <style>{`
+                .hide-scrollbar::-webkit-scrollbar {
+                    display: none;
+                }
+            `}</style>
         </section>
     );
 };
