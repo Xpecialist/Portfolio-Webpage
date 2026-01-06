@@ -49,13 +49,13 @@ const Navbar = () => {
                     </div>
 
                     <div className="hidden md:flex items-center space-x-4">
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        <a href="https://github.com/Xpecialist" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                             <Github size={20} />
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        <a href="https://www.linkedin.com/in/manos-loukakis-6292b7283/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                             <Linkedin size={20} />
                         </a>
-                        <a href="mailto:hello@example.com" className="text-gray-400 hover:text-white transition-colors">
+                        <a href="mailto:manolouk2010@gmail.com" className="text-gray-400 hover:text-white transition-colors">
                             <Mail size={20} />
                         </a>
                     </div>

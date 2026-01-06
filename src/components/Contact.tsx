@@ -33,10 +33,10 @@ const Contact = () => {
 
                 <div className="flex flex-col items-center border-t border-white/10 pt-8 mt-16">
                     <div className="flex space-x-6 mb-4">
-                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        <a href="https://github.com/Xpecialist" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                             <Github size={24} />
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
+                        <a href="https://www.linkedin.com/in/manos-loukakis-6292b7283/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                             <Linkedin size={24} />
                         </a>
                         <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
