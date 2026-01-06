@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Twitter } from "lucide-react";
+import { Mail, Linkedin, Github } from "lucide-react";
 
 const Contact = () => {
     return (
@@ -39,9 +39,7 @@ const Contact = () => {
                         <a href="https://www.linkedin.com/in/manos-loukakis-6292b7283/" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
                             <Linkedin size={24} />
                         </a>
-                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                            <Twitter size={24} />
-                        </a>
+
                     </div>
                     <p className="text-gray-500 text-sm">
                         © {new Date().getFullYear()} CV Website. Built with React & Tailwind.
