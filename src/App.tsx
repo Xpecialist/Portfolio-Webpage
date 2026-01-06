@@ -7,7 +7,7 @@ import Background from './components/Background'
 
 function App() {
   return (
-    <div className="bg-background min-h-screen text-white">
+    <div className="min-h-screen text-white relative">
       <Background />
       <Navbar />
       <Hero />
