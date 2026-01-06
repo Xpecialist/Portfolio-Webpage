@@ -29,7 +29,7 @@ const Hero = () => {
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <a
                             href="#projects"
-                            className="px-8 py-3 rounded-full bg-primary hover:bg-violet-600 text-white font-medium transition-colors flex items-center gap-2"
+                            className="px-8 py-3 rounded-full bg-primary hover:bg-emerald-600 text-white font-medium transition-colors flex items-center gap-2"
                         >
                             View Work <ArrowRight size={20} />
                         </a>

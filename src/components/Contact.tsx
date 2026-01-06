@@ -22,7 +22,7 @@ const Contact = () => {
 
                     <a
                         href="mailto:hello@example.com"
-                        className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-primary hover:bg-violet-600 text-white font-medium transition-colors"
+                        className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-primary hover:bg-emerald-600 text-white font-medium transition-colors"
                     >
                         <Mail size={20} />
                         Say Hello
