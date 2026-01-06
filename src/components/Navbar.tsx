@@ -40,9 +40,10 @@ const Navbar = () => {
                                 <a
                                     key={link.name}
                                     href={link.href}
-                                    className="text-gray-300 hover:text-white hover:text-primary transition-colors duration-300 px-3 py-2 rounded-md text-sm font-medium"
+                                    className="relative group text-gray-300 hover:text-white transition-colors duration-300 px-3 py-2 text-sm font-medium"
                                 >
-                                    {link.name}
+                                    <span className="relative z-10">{link.name}</span>
+                                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-lime-400 to-emerald-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
                                 </a>
                             ))}
                         </div>

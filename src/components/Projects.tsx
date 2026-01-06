@@ -174,7 +174,7 @@ const Projects = () => {
                                     flex flex-col select-none
                                 "
                             >
-                                <div className="relative h-64 overflow-hidden pointer-events-none shrink-0">
+                                <div className="relative h-56 overflow-hidden pointer-events-none shrink-0">
                                     <img
                                         src={project.image}
                                         alt={project.title}
