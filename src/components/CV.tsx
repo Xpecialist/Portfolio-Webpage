@@ -30,7 +30,7 @@ const CV = () => {
     ];
 
     const skills = [
-        "Java", "C#", "Python", "Javascript", "React", "Springboot", "SQL", "NoSQL", "Git", "Agile/SCRUM"
+        "Java", "C++", "C#", "Python", "Javascript", "React", "AngularJS", "Node.js", "Springboot", "Unity", "SQL", "NoSQL", "Git", "Agile/SCRUM"
     ];
 
     return (
