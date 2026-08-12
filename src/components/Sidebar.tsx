@@ -25,7 +25,12 @@ const Sidebar = ({ activeSection, isDark, toggleTheme }: SidebarProps) => {
   const burnPendingRef = useRef(false);   // timer scheduled but not fired yet
   const burnActiveRef = useRef(false);    // burn toast is currently showing
   const prevIsDarkRef = useRef(isDark);
+  const isDarkRef = useRef(isDark);
   const toastKeyRef = useRef(0);
+
+  useEffect(() => {
+    isDarkRef.current = isDark;
+  }, [isDark]);
 
   const showToast = (type: ToastType) => {
     toastKeyRef.current += 1;
@@ -38,22 +43,7 @@ const Sidebar = ({ activeSection, isDark, toggleTheme }: SidebarProps) => {
     setToast(null);
   };
 
-  // Show burn toast 3s after page load if already in light mode
-  useEffect(() => {
-    if (!isDark) {
-      burnPendingRef.current = true;
-      burnTimerRef.current = setTimeout(() => {
-        burnPendingRef.current = false;
-        showToast("burn");
-      }, 3000);
-    }
-    return () => {
-      if (burnTimerRef.current) clearTimeout(burnTimerRef.current);
-    };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // Theme change → toast logic
+  // Theme change → toast logic (when user toggles dark / light mode)
   useEffect(() => {
     const wasDark = prevIsDarkRef.current;
     prevIsDarkRef.current = isDark;
@@ -92,7 +82,7 @@ const Sidebar = ({ activeSection, isDark, toggleTheme }: SidebarProps) => {
     const sleep = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
 
     const runAnimation = async () => {
-      // Phase 1: type "Welcome Malaka"
+      // Phase 1: type "Welcome Malaka!"
       for (let i = 1; i <= PHASE1.length; i++) {
         if (cancelled) return;
         setDisplayedName(PHASE1.slice(0, i));
@@ -112,7 +102,7 @@ const Sidebar = ({ activeSection, isDark, toggleTheme }: SidebarProps) => {
       // Short pause before final text
       await sleep(180);
 
-      // Phase 3: type final name
+      // Phase 3: type final name "I'm Manos Loukakis"
       for (let i = 1; i <= PHASE2.length; i++) {
         if (cancelled) return;
         setDisplayedName(PHASE2.slice(0, i));
@@ -130,10 +120,23 @@ const Sidebar = ({ activeSection, isDark, toggleTheme }: SidebarProps) => {
           setCursorVisible(false);
         }
       }, 400);
+
+      // Name animation ended! 5 seconds after completion, show burn toast if in light mode
+      if (!isDarkRef.current) {
+        if (burnTimerRef.current) clearTimeout(burnTimerRef.current);
+        burnPendingRef.current = true;
+        burnTimerRef.current = setTimeout(() => {
+          burnPendingRef.current = false;
+          showToast("burn");
+        }, 5000);
+      }
     };
 
     runAnimation();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      if (burnTimerRef.current) clearTimeout(burnTimerRef.current);
+    };
   }, []);
 
   useEffect(() => {
