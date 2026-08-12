@@ -8,6 +8,66 @@
   }
 
   body {
-    @apply bg-background text-white antialiased font-sans;
+    @apply bg-slate-900 leading-relaxed text-slate-400 antialiased selection:bg-teal-300 selection:text-teal-900 font-sans;
+  }
+}
+
+/* 3D Stack Carousel Styles */
+.carousel-3d-perspective {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  height: 500px;
+  perspective: 500px;
+  transform-style: preserve-3d;
+  margin: 0 auto;
+}
+
+.carousel-3d-card-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  transform: 
+    rotateY(calc(var(--offset) * 50deg)) 
+    scaleY(calc(1 + var(--abs-offset) * -0.4))
+    translateZ(calc(var(--abs-offset) * -30rem))
+    translateX(calc(var(--direction) * -5rem));
+  filter: blur(calc(var(--abs-offset) * 0.6rem));
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-style: preserve-3d;
+}
+
+.carousel-3d-card {
+  width: 100%;
+  height: 100%;
+  background-color: hsl(222deg, 33%, calc(20% - var(--abs-offset) * 6%));
+  border-radius: 1.25rem;
+  border: 1px solid rgba(132, 204, 22, calc(var(--active) * 0.6 + (1 - var(--active)) * 0.1));
+  box-shadow: 
+    0 20px 30px -10px rgba(15, 23, 42, 0.8),
+    0 0 25px rgba(132, 204, 22, calc(var(--active) * 0.2));
+  transition: all 0.35s ease-out;
+}
+
+.carousel-card-content {
+  transition: opacity 0.35s ease-out;
+  opacity: calc(0.3 + var(--active) * 0.7);
+}
+
+@media (max-width: 640px) {
+  .carousel-3d-perspective {
+    max-width: 310px;
+    height: 480px;
+  }
+
+  .carousel-3d-card-container {
+    transform: 
+      rotateY(calc(var(--offset) * 40deg)) 
+      scaleY(calc(1 + var(--abs-offset) * -0.3))
+      translateZ(calc(var(--abs-offset) * -20rem))
+      translateX(calc(var(--direction) * -3.5rem));
+    filter: blur(calc(var(--abs-offset) * 0.4rem));
   }
 }
