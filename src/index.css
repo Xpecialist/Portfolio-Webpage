@@ -12,6 +12,36 @@
   }
 }
 
+/* Toast animations */
+@keyframes toast-burn {
+  0%   { opacity: 0; transform: translateY(-50%) translateX(0); }
+  8%   { opacity: 1; transform: translateY(-50%) translateX(0); }
+  18%  { transform: translateY(-50%) translateX(7px); }
+  27%  { transform: translateY(-50%) translateX(-6px); }
+  36%  { transform: translateY(-50%) translateX(5px); }
+  45%  { transform: translateY(-50%) translateX(-4px); }
+  52%  { transform: translateY(-50%) translateX(3px); }
+  58%  { transform: translateY(-50%) translateX(0); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-50%) translateX(0); }
+}
+
+@keyframes toast-cool {
+  0%   { opacity: 0; transform: translateY(-50%); }
+  12%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.toast-burn {
+  animation: toast-burn 4s ease forwards;
+}
+
+.toast-cool {
+  animation: toast-cool 3s ease forwards;
+}
+
+
 /* 3D Stack Carousel Styles */
 .carousel-3d-perspective {
   position: relative;
@@ -42,18 +72,26 @@
 .carousel-3d-card {
   width: 100%;
   height: 100%;
-  background-color: hsl(222deg, 33%, calc(20% - var(--abs-offset) * 6%));
+  background-color: var(--card-bg, hsl(222deg, 33%, calc(20% - var(--abs-offset) * 6%)));
   border-radius: 1.25rem;
-  border: 1px solid rgba(132, 204, 22, calc(var(--active) * 0.6 + (1 - var(--active)) * 0.1));
+  border: 1px solid rgba(45, 212, 191, calc(var(--active) * 0.7 + (1 - var(--active)) * 0.15));
   box-shadow: 
     0 20px 30px -10px rgba(15, 23, 42, 0.8),
-    0 0 25px rgba(132, 204, 22, calc(var(--active) * 0.2));
+    0 0 25px rgba(45, 212, 191, calc(var(--active) * 0.25));
   transition: all 0.35s ease-out;
+}
+
+.light-theme .carousel-3d-card {
+  background-color: var(--card-bg, #ffffff);
+  border: 1px solid rgba(168, 85, 247, calc(var(--active) * 0.8 + (1 - var(--active)) * 0.2));
+  box-shadow: 
+    0 15px 25px -5px rgba(168, 85, 247, 0.15),
+    0 0 20px rgba(192, 38, 211, calc(var(--active) * 0.3));
 }
 
 .carousel-card-content {
   transition: opacity 0.35s ease-out;
-  opacity: calc(0.3 + var(--active) * 0.7);
+  opacity: calc(0.4 + var(--active) * 0.6);
 }
 
 @media (max-width: 640px) {

@@ -1,6 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
 
-const CV = () => {
+interface CVProps {
+    isDark?: boolean;
+}
+
+const CV = ({ isDark = true }: CVProps) => {
     const experiences = [
         {
             id: 1,
@@ -10,7 +14,7 @@ const CV = () => {
             url: "#",
             description:
                 "Implemented APIs using Java and developed a functional Booking Engine for an early company project using React and Spring Boot. Cooperated closely with a team of developers using SCRUM methodology to manage and organize work efficiently.",
-            skills: ["Java", "React", "Spring Boot", "REST APIs", "SCRUM"]
+            skills: ["Java", "React", "Spring Boot", "REST APIs", "PostgreSQL", "SCRUM"]
         },
     ];
 
@@ -34,66 +38,74 @@ const CV = () => {
     ];
 
     const skills = [
-        "Java", "C++", "C#", "Python", "JavaScript", "TypeScript", "React", "AngularJS", "Node.js", "Spring Boot", "Unity", "SQL", "NoSQL (Cassandra)", "Git", "Agile/SCRUM"
+        "Java", "C++", "C#", "Python", "JavaScript", "TypeScript", "React", "AngularJS", "Node.js", "Spring Boot", "Unity", "SQL", "PostgreSQL", "NoSQL (Cassandra)", "Git", "Agile/SCRUM"
     ];
 
     return (
         <div className="space-y-24">
             {/* ABOUT SECTION */}
             <section id="about" className="scroll-mt-16 lg:scroll-mt-24" aria-label="About me">
-                <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                    <h2 className="text-sm font-bold uppercase tracking-widest text-slate-200">About</h2>
+                <div className={`sticky top-0 z-20 -mx-6 mb-4 w-screen px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0 ${isDark ? 'bg-slate-900/75' : 'bg-slate-100/80'}`}>
+                    <h2 className={`text-sm font-bold uppercase tracking-widest ${isDark ? 'text-slate-200' : 'text-purple-900'}`}>About</h2>
                 </div>
-                <div className="space-y-4 text-slate-400 leading-relaxed">
+                <div className={`space-y-4 leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-800 font-medium'}`}>
                     <p>
-                        I'm a passionate <span className="text-slate-200 font-medium">Full Stack Developer</span> and Computer Engineer who loves bridging the gap between sleek user interfaces and robust backend systems.
+                        I'm a <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-950 font-bold'}`}>Full Stack Developer</span> and Computer Engineer passionate about building high-performance web applications and resilient backend services. I thrive at the intersection of frontend user experience and robust architecture.
                     </p>
                     <p>
-                        Graduated with an <span className="text-slate-200 font-medium">Integrated Master's Degree</span> from the University of Patras, with exchange studies at Universidad Politécnica de Madrid. I have hands-on experience building full-stack web applications, REST APIs, Virtual Reality thesis research with Eye Tracking, and NoSQL database applications.
-                    </p>
-                    <p>
-                        When I'm not coding, you can find me exploring new game dev techniques in Unity & Python, researching tech innovations, or sharpening my full stack skills.
+                        Holding an <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-950 font-bold'}`}>Integrated Master's Degree</span> from the University of Patras (with exchange studies at Universidad Politécnica de Madrid), my experience ranges from developing full-stack Web Applications to VR Video Games and even Academic Researches.
                     </p>
 
                     {/* Skill Tags Cloud */}
                     <div className="pt-4">
-                        <h4 className="text-xs font-bold uppercase tracking-widest text-slate-300 mb-3">Tech Stack & Tools</h4>
+                        <h4 className={`text-xs font-bold uppercase tracking-widest mb-3 ${isDark ? 'text-slate-300' : 'text-slate-900'}`}>Tech Stack & Tools</h4>
                         <div className="flex flex-wrap gap-1.5">
                             {skills.map((skill) => (
                                 <span
                                     key={skill}
-                                    className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300 border border-teal-500/10"
+                                    className={`flex items-center rounded-full px-3 py-1 text-xs font-semibold leading-5 border ${
+                                        isDark
+                                            ? 'bg-teal-400/10 text-teal-300 border-teal-500/10'
+                                            : 'bg-purple-100/80 text-purple-900 border-purple-300 shadow-sm'
+                                    }`}
                                 >
                                     {skill}
                                 </span>
                             ))}
                         </div>
                     </div>
+
                 </div>
             </section>
 
             {/* EXPERIENCE SECTION */}
             <section id="experience" className="scroll-mt-16 lg:scroll-mt-24" aria-label="Work experience">
-                <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                    <h2 className="text-sm font-bold uppercase tracking-widest text-slate-200">Experience</h2>
+                <div className={`sticky top-0 z-20 -mx-6 mb-4 w-screen px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0 ${isDark ? 'bg-slate-900/75' : 'bg-slate-100/80'}`}>
+                    <h2 className={`text-sm font-bold uppercase tracking-widest ${isDark ? 'text-slate-200' : 'text-purple-900'}`}>Experience</h2>
                 </div>
                 <div>
                     <ol className="group/list">
                         {experiences.map((exp) => (
                             <li key={exp.id} className="mb-12">
                                 <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                                    <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" />
+                                    <div className={`absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block ${
+                                        isDark
+                                            ? 'lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)]'
+                                            : 'lg:group-hover:bg-white lg:group-hover:shadow-md lg:group-hover:border lg:group-hover:border-purple-200'
+                                    }`} />
                                     <header
-                                        className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2"
+                                        className={`z-10 mb-2 mt-1 text-xs font-bold uppercase tracking-wide sm:col-span-2 ${isDark ? 'text-slate-500' : 'text-slate-600'}`}
                                         aria-label={exp.period}
                                     >
                                         {exp.period}
                                     </header>
                                     <div className="z-10 sm:col-span-6">
-                                        <h3 className="font-medium leading-snug text-slate-200">
+                                        <h3 className="font-medium leading-snug">
                                             <div>
                                                 <a
-                                                    className="inline-flex items-baseline font-medium leading-tight text-slate-200 hover:text-teal-300 focus-visible:text-teal-300 group/link text-base"
+                                                    className={`inline-flex items-baseline font-bold leading-tight group/link text-base ${
+                                                        isDark ? 'text-slate-200 hover:text-teal-300' : 'text-slate-900 hover:text-purple-700'
+                                                    }`}
                                                     href={exp.url}
                                                     target="_blank"
                                                     rel="noreferrer noopener"
@@ -109,13 +121,17 @@ const CV = () => {
                                                 </a>
                                             </div>
                                         </h3>
-                                        <p className="mt-2 text-sm leading-normal text-slate-400">
+                                        <p className={`mt-2 text-sm leading-normal ${isDark ? 'text-slate-400' : 'text-slate-800 font-medium'}`}>
                                             {exp.description}
                                         </p>
                                         <ul className="mt-3 flex flex-wrap" aria-label="Technologies used">
                                             {exp.skills.map((tech) => (
                                                 <li key={tech} className="mr-1.5 mt-2">
-                                                    <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">
+                                                    <div className={`flex items-center rounded-full px-3 py-1 text-xs font-semibold leading-5 ${
+                                                        isDark
+                                                            ? 'bg-teal-400/10 text-teal-300'
+                                                            : 'bg-purple-100 text-purple-900 border border-purple-300/60'
+                                                    }`}>
                                                         {tech}
                                                     </div>
                                                 </li>
@@ -131,31 +147,39 @@ const CV = () => {
 
             {/* EDUCATION SECTION */}
             <section id="education" className="scroll-mt-16 lg:scroll-mt-24" aria-label="Education">
-                <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-slate-900/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
-                    <h2 className="text-sm font-bold uppercase tracking-widest text-slate-200">Education</h2>
+                <div className={`sticky top-0 z-20 -mx-6 mb-4 w-screen px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0 ${isDark ? 'bg-slate-900/75' : 'bg-slate-100/80'}`}>
+                    <h2 className={`text-sm font-bold uppercase tracking-widest ${isDark ? 'text-slate-200' : 'text-purple-900'}`}>Education</h2>
                 </div>
                 <div>
                     <ol className="group/list">
                         {education.map((edu) => (
                             <li key={edu.id} className="mb-12">
                                 <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-                                    <div className="absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)] lg:group-hover:drop-shadow-lg" />
+                                    <div className={`absolute -inset-x-4 -inset-y-4 z-0 hidden rounded-md transition motion-reduce:transition-none lg:-inset-x-6 lg:block ${
+                                        isDark
+                                            ? 'lg:group-hover:bg-slate-800/50 lg:group-hover:shadow-[inset_0_1px_0_0_rgba(148,163,184,0.1)]'
+                                            : 'lg:group-hover:bg-white lg:group-hover:shadow-md lg:group-hover:border lg:group-hover:border-purple-200'
+                                    }`} />
                                     <header
-                                        className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-500 sm:col-span-2"
+                                        className={`z-10 mb-2 mt-1 text-xs font-bold uppercase tracking-wide sm:col-span-2 ${isDark ? 'text-slate-500' : 'text-slate-600'}`}
                                     >
                                         {edu.period}
                                     </header>
                                     <div className="z-10 sm:col-span-6">
-                                        <h3 className="font-medium leading-snug text-slate-200 text-base">
-                                            {edu.degree} · <span className="text-teal-300">{edu.school}</span>
+                                        <h3 className={`font-bold leading-snug text-base ${isDark ? 'text-slate-200' : 'text-slate-950'}`}>
+                                            {edu.degree} · <span className={isDark ? 'text-teal-300' : 'text-purple-700'}>{edu.school}</span>
                                         </h3>
-                                        <p className="mt-2 text-sm leading-normal text-slate-400">
+                                        <p className={`mt-2 text-sm leading-normal ${isDark ? 'text-slate-400' : 'text-slate-800 font-medium'}`}>
                                             {edu.description}
                                         </p>
                                         <ul className="mt-3 flex flex-wrap" aria-label="Key subjects">
                                             {edu.skills.map((skill) => (
                                                 <li key={skill} className="mr-1.5 mt-2">
-                                                    <div className="flex items-center rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium leading-5 text-teal-300">
+                                                    <div className={`flex items-center rounded-full px-3 py-1 text-xs font-semibold leading-5 ${
+                                                        isDark
+                                                            ? 'bg-teal-400/10 text-teal-300'
+                                                            : 'bg-purple-100 text-purple-900 border border-purple-300/60'
+                                                    }`}>
                                                         {skill}
                                                     </div>
                                                 </li>
