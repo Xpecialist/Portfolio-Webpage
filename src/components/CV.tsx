@@ -1,4 +1,4 @@
-import { Calendar, ArrowUpRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 const CV = () => {
     const experiences = [
