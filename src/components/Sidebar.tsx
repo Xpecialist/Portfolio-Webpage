@@ -7,7 +7,8 @@ interface SidebarProps {
   toggleTheme: () => void;
 }
 
-const FULL_NAME = "Manos Loukakis";
+const PHASE1 = "Welcome Malaka!";
+const PHASE2 = "I'm Manos Loukakis";
 
 type ToastType = "burn" | "cool";
 
@@ -36,6 +37,21 @@ const Sidebar = ({ activeSection, isDark, toggleTheme }: SidebarProps) => {
     burnActiveRef.current = false;
     setToast(null);
   };
+
+  // Show burn toast 3s after page load if already in light mode
+  useEffect(() => {
+    if (!isDark) {
+      burnPendingRef.current = true;
+      burnTimerRef.current = setTimeout(() => {
+        burnPendingRef.current = false;
+        showToast("burn");
+      }, 3000);
+    }
+    return () => {
+      if (burnTimerRef.current) clearTimeout(burnTimerRef.current);
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Theme change → toast logic
   useEffect(() => {
@@ -70,27 +86,54 @@ const Sidebar = ({ activeSection, isDark, toggleTheme }: SidebarProps) => {
     };
   }, [isDark]);
 
-  // Typing animation on mount
+  // Multi-phase typewriter animation on mount
   useEffect(() => {
-    let index = 0;
-    const typeInterval = setInterval(() => {
-      if (index < FULL_NAME.length) {
-        setDisplayedName(FULL_NAME.slice(0, index + 1));
-        index++;
-      } else {
-        clearInterval(typeInterval);
-        let blinks = 0;
-        const blinkInterval = setInterval(() => {
-          setCursorVisible((v) => !v);
-          blinks++;
-          if (blinks > 5) {
-            clearInterval(blinkInterval);
-            setCursorVisible(false);
-          }
-        }, 400);
+    let cancelled = false;
+    const sleep = (ms: number) => new Promise<void>(resolve => setTimeout(resolve, ms));
+
+    const runAnimation = async () => {
+      // Phase 1: type "Welcome Malaka"
+      for (let i = 1; i <= PHASE1.length; i++) {
+        if (cancelled) return;
+        setDisplayedName(PHASE1.slice(0, i));
+        await sleep(80);
       }
-    }, 80);
-    return () => clearInterval(typeInterval);
+
+      // Hold briefly
+      await sleep(400);
+
+      // Phase 2: fast backspace delete
+      for (let i = PHASE1.length - 1; i >= 0; i--) {
+        if (cancelled) return;
+        setDisplayedName(PHASE1.slice(0, i));
+        await sleep(38);
+      }
+
+      // Short pause before final text
+      await sleep(180);
+
+      // Phase 3: type final name
+      for (let i = 1; i <= PHASE2.length; i++) {
+        if (cancelled) return;
+        setDisplayedName(PHASE2.slice(0, i));
+        await sleep(72);
+      }
+
+      // Blink cursor a few times then hide
+      if (cancelled) return;
+      let blinks = 0;
+      const blinkInterval = setInterval(() => {
+        setCursorVisible((v) => !v);
+        blinks++;
+        if (blinks > 5) {
+          clearInterval(blinkInterval);
+          setCursorVisible(false);
+        }
+      }, 400);
+    };
+
+    runAnimation();
+    return () => { cancelled = true; };
   }, []);
 
   useEffect(() => {
@@ -213,7 +256,7 @@ const Sidebar = ({ activeSection, isDark, toggleTheme }: SidebarProps) => {
                 }`}
                 aria-hidden="true"
               >
-                {toast.type === "burn" ? "🔥 Your eyes are burning!!" : "Now it's cool 😅"}
+                {toast.type === "burn" ? "🔥 Eyes burning!?" : "Now it's cool 😅"}
               </span>
             )}
           </li>

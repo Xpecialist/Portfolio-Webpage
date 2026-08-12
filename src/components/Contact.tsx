@@ -53,10 +53,7 @@ const Contact = ({ isDark = true }: ContactProps) => {
 
             {/* Footer Attribution */}
             <footer className={`mt-16 text-xs space-y-2 ${isDark ? 'text-slate-500' : 'text-slate-600 font-medium'}`}>
-                <p>
-                    Designed & Built by <span className={isDark ? 'text-slate-400 font-medium' : 'text-slate-900 font-bold'}>Manos Loukakis</span>.
-                    Inspired by <a href="https://brittanychiang.com" target="_blank" rel="noreferrer noopener" className={isDark ? 'text-slate-400 hover:text-teal-300' : 'text-purple-700 font-bold hover:underline'}>Brittany Chiang</a>.
-                </p>
+
                 <p>© {new Date().getFullYear()} Manos Loukakis. All rights reserved.</p>
             </footer>
         </section>

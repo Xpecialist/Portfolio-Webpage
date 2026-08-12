@@ -50,7 +50,7 @@ const CV = ({ isDark = true }: CVProps) => {
                 </div>
                 <div className={`space-y-4 leading-relaxed ${isDark ? 'text-slate-400' : 'text-slate-800 font-medium'}`}>
                     <p>
-                        I'm a <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-950 font-bold'}`}>Full Stack Developer</span> and Computer Engineer passionate about building high-performance web applications and resilient backend services. I thrive at the intersection of frontend user experience and robust architecture.
+                        I'm a <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-950 font-bold'}`}>Full Stack Developer</span> and Computer Engineer from Greece, passionate about building high-performance web applications and resilient backend services. I thrive at the intersection of frontend user experience and robust architecture.
                     </p>
                     <p>
                         Holding an <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-950 font-bold'}`}>Integrated Master's Degree</span> from the University of Patras (with exchange studies at Universidad Politécnica de Madrid), my experience ranges from developing full-stack Web Applications to VR Video Games and even Academic Researches.
