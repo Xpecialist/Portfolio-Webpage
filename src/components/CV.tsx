@@ -1,5 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
-
 interface CVProps {
     isDark?: boolean;
 }
@@ -11,7 +9,6 @@ const CV = ({ isDark = true }: CVProps) => {
             role: "Game Master",
             company: "Playhouse Board Game Cafe",
             period: "Sept 2024 — Sept 2025",
-            url: "#",
             description:
                 "Developed and maintained expert-level knowledge of a catalog of 100-120 complex products. Conducted requirements-gathering conversations with customer groups (2-15 people) to recommend optimal solutions. Collaborated with a cross-functional team in high-pressure environments, delivering clear on-the-spot rules explanations and managing concurrent workflows.",
             skills: ["Requirements Gathering", "Team Coordination", "Technical Support", "Troubleshooting", "User Onboarding", "Communication"]
@@ -21,7 +18,6 @@ const CV = ({ isDark = true }: CVProps) => {
             role: "Full Stack Developer Intern",
             company: "Knowledge A.E.",
             period: "March 2024 — May 2024",
-            url: "#",
             description:
                 "Designed and implemented RESTful APIs in Java, applying OOP principles. Built a full-stack Booking Engine application with a React.js front end and Spring Boot backend. Collaborated within a cross-functional Agile/Scrum team, actively participating in sprint planning and daily stand-ups across the SDLC.",
             skills: ["Java", "React.js", "Spring Boot", "RESTful APIs", "Agile/Scrum", "SDLC", "OOP"]
@@ -110,26 +106,8 @@ const CV = ({ isDark = true }: CVProps) => {
                                         {exp.period}
                                     </header>
                                     <div className="z-10 sm:col-span-6">
-                                        <h3 className="font-medium leading-snug">
-                                            <div>
-                                                <a
-                                                    className={`inline-flex items-baseline font-bold leading-tight group/link text-base ${
-                                                        isDark ? 'text-slate-200 hover:text-teal-300' : 'text-slate-900 hover:text-purple-700'
-                                                    }`}
-                                                    href={exp.url}
-                                                    target="_blank"
-                                                    rel="noreferrer noopener"
-                                                >
-                                                    <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:-inset-x-6 md:-inset-y-4 lg:block" />
-                                                    <span>
-                                                        {exp.role} ·{" "}
-                                                        <span className="inline-block">
-                                                            {exp.company}
-                                                            <ArrowUpRight className="inline-block h-4 w-4 shrink-0 transition-transform group-hover/link:-translate-y-1 group-hover/link:translate-x-1 group-focus-visible/link:-translate-y-1 group-focus-visible/link:translate-x-1 motion-reduce:transition-none ml-1 translate-y-px" />
-                                                        </span>
-                                                    </span>
-                                                </a>
-                                            </div>
+                                        <h3 className={`font-bold leading-snug text-base ${isDark ? 'text-slate-200' : 'text-slate-950'}`}>
+                                            {exp.role} · <span className={isDark ? 'text-teal-300' : 'text-purple-700'}>{exp.company}</span>
                                         </h3>
                                         <p className={`mt-2 text-sm leading-normal ${isDark ? 'text-slate-400' : 'text-slate-800 font-medium'}`}>
                                             {exp.description}
