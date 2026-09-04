@@ -17,35 +17,35 @@ const Projects = ({ isDark = true }: ProjectsProps) => {
         {
             id: 3,
             title: "Activity on Cloud",
-            description: "Booking Engine for activities. React & Tailwind for frontend, Spring API for backend. Includes Admin interface for managing bookings and schedules.",
-            tags: ["React", "Tailwind CSS", "Spring Boot", "Java"],
+            description: "Full-stack team project delivering a demo Booking Engine for activity providers. Built the front-end UI with React.js and Tailwind CSS and a RESTful backend API with Spring Boot, including a dedicated Admin interface for managing provider activities.",
+            tags: ["React.js", "Tailwind CSS", "Spring Boot", "Java", "RESTful API"],
             github: "https://github.com/Xpecialist/ActivityOnCloud",
             demo: "#",
             image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80"
         },
         {
             id: 1,
-            title: "VR Pedestrian Behavior",
-            description: "Final Thesis: Evaluation of Pedestrian Behavior in Virtual Reality for Traffic Education Using Eye Tracking technology.",
-            tags: ["VR", "Research", "C#", "Unity", "Eye Tracking"],
+            title: "Evaluation of Pedestrian Behavior in VR",
+            description: "Integrated Master's Thesis in Computer Engineering. Designed and conducted a Virtual Reality (VR) experiment using eye tracking technology to evaluate pedestrian behavior for traffic-safety education, including experimental design, data collection and statistical analysis.",
+            tags: ["VR", "Eye Tracking", "C#", "Unity", "Data Analysis", "Research"],
             github: "https://github.com/Xpecialist/Evaluation-of-Pedestrian-Behavior-in-Virtual-Reality-for-Traffic-Education-Using-Eye-Tracking",
             demo: "#",
             image: vrImage
         },
         {
             id: 2,
-            title: "Area 15: Run for your life!",
-            description: "A 2D platformer video game developed using Python as part of a software engineering project with dynamic level design.",
-            tags: ["Python", "Pygame", "Game Dev"],
+            title: "Area 15: Run for Your Life!",
+            description: "Software engineering project applying the full software development life cycle (SDLC) - including requirements analysis, design and testing - to build a 2D platformer video game demo in Python.",
+            tags: ["Python", "SDLC", "Game Dev", "Testing"],
             github: "https://github.com/Xpecialist/SoftwareEngineeringProject",
             demo: "#",
             image: gameImage
         },
         {
             id: 4,
-            title: "Covid-19 Tracker Map",
-            description: "Map-based web application displaying shop and area statuses. Tracks user geolocation and renders interactive markers.",
-            tags: ["React", "Leaflet Maps", "Web API"],
+            title: "COVID-19 Case Monitoring Web Application",
+            description: "Developed a web application with real-time geolocation-based mapping, enabling users to view nearby shops color-coded by COVID-19 case status (green for safe, red for reported cases) to support informed decision-making.",
+            tags: ["JavaScript", "Geolocation API", "Leaflet Maps", "Web App"],
             github: "https://github.com/Xpecialist/WebProject",
             demo: "#",
             image: covidImage
@@ -53,8 +53,8 @@ const Projects = ({ isDark = true }: ProjectsProps) => {
         {
             id: 5,
             title: "NoSQL Movie Database",
-            description: "Implementation of a high-throughput NoSQL database schema using Apache CassandraDB with optimized data queries.",
-            tags: ["NoSQL", "CassandraDB", "Big Data"],
+            description: "Designed and implemented a NoSQL database using CassandraDB, including schema design and query optimization for common data-retrieval use cases.",
+            tags: ["NoSQL", "CassandraDB", "Schema Design", "Query Optimization"],
             github: "https://github.com/Xpecialist/bigDataProject",
             demo: "#",
             image: "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=800&q=80"

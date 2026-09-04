@@ -8,13 +8,23 @@ const CV = ({ isDark = true }: CVProps) => {
     const experiences = [
         {
             id: 1,
+            role: "Game Master",
+            company: "Playhouse Board Game Cafe",
+            period: "Sept 2024 — Sept 2025",
+            url: "#",
+            description:
+                "Developed and maintained expert-level knowledge of a catalog of 100-120 complex products. Conducted requirements-gathering conversations with customer groups (2-15 people) to recommend optimal solutions. Collaborated with a cross-functional team in high-pressure environments, delivering clear on-the-spot rules explanations and managing concurrent workflows.",
+            skills: ["Requirements Gathering", "Team Coordination", "Technical Support", "Troubleshooting", "User Onboarding", "Communication"]
+        },
+        {
+            id: 2,
             role: "Full Stack Developer Intern",
             company: "Knowledge A.E.",
             period: "March 2024 — May 2024",
             url: "#",
             description:
-                "Implemented APIs using Java and developed a functional Booking Engine for an early company project using React and Spring Boot. Cooperated closely with a team of developers using SCRUM methodology to manage and organize work efficiently.",
-            skills: ["Java", "React", "Spring Boot", "REST APIs", "PostgreSQL", "SCRUM"]
+                "Designed and implemented RESTful APIs in Java, applying OOP principles. Built a full-stack Booking Engine application with a React.js front end and Spring Boot backend. Collaborated within a cross-functional Agile/Scrum team, actively participating in sprint planning and daily stand-ups across the SDLC.",
+            skills: ["Java", "React.js", "Spring Boot", "RESTful APIs", "Agile/Scrum", "SDLC", "OOP"]
         },
     ];
 
@@ -24,8 +34,8 @@ const CV = ({ isDark = true }: CVProps) => {
             degree: "Computer Engineer & Informatics (Integrated Masters)",
             school: "University of Patras",
             period: "2018 — 2024",
-            description: "EQF Level 7. Integrated Master's degree focusing on Software Engineering, Databases, and Systems Design.",
-            skills: ["Software Engineering", "Algorithms", "Databases", "Distributed Systems"]
+            description: "Integrated Master's degree focusing on Software Engineering, Databases, and Systems Design.",
+            skills: ["Software Engineering", "Algorithms", "Databases", "Distributed Systems", "SDLC"]
         },
         {
             id: 2,
@@ -38,7 +48,7 @@ const CV = ({ isDark = true }: CVProps) => {
     ];
 
     const skills = [
-        "Java", "C++", "C#", "Python", "JavaScript", "TypeScript", "React", "AngularJS", "Node.js", "Spring Boot", "Unity", "SQL", "PostgreSQL", "NoSQL (Cassandra)", "Git", "Agile/SCRUM"
+        "Java", "C#", "Python", "JavaScript", "SQL", "React.js", "Spring Boot", "NoSQL (CassandraDB)", "Agile/Scrum", "SDLC", "Quality Assurance (QA)", "Git/GitHub", "Microsoft Office 365", "English (C2)"
     ];
 
     return (
