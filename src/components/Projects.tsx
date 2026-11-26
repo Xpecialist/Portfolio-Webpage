@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
+import { Github, ExternalLink, ChevronLeft, ChevronRight, FileText } from "lucide-react";
 import covidImage from "../assets/covid-tracker.png";
 import gameImage from "../assets/area-15-game.png";
 import vrImage from "../assets/vr-project.png";
@@ -56,10 +56,11 @@ const Projects = ({ isDark = true }: ProjectsProps) => {
         {
             id: 1,
             title: "Evaluation of Pedestrian Behavior in VR",
-            description: "Integrated Master's Thesis in Computer Engineering. Designed and conducted a Virtual Reality (VR) experiment using eye tracking technology to evaluate pedestrian behavior for traffic-safety education, including experimental design, data collection and statistical analysis.",
+            description: "Integrated Master's Thesis in Computer Engineering, published as a peer-reviewed paper in Springer's Lecture Notes in Computer Science (2025). Designed and conducted a Virtual Reality (VR) experiment using eye tracking technology to evaluate pedestrian behavior for traffic-safety education, including experimental design, data collection and statistical analysis.",
             tags: ["VR", "Eye Tracking", "C#", "Unity", "Data Analysis", "Research"],
             github: "https://github.com/Xpecialist/Evaluation-of-Pedestrian-Behavior-in-Virtual-Reality-for-Traffic-Education-Using-Eye-Tracking",
             demo: "#",
+            paper: "https://link.springer.com/chapter/10.1007/978-3-031-92692-1_10",
             image: vrImage
         },
         {
@@ -215,6 +216,19 @@ const Projects = ({ isDark = true }: ProjectsProps) => {
                                                 >
                                                     <Github size={16} /> Code
                                                 </a>
+                                                {project.paper && (
+                                                    <a
+                                                        href={project.paper}
+                                                        target="_blank"
+                                                        rel="noreferrer noopener"
+                                                        className={`flex items-center gap-1.5 text-xs font-bold transition-colors ${
+                                                            isDark ? 'text-teal-300 hover:text-white' : 'text-purple-700 hover:text-purple-950'
+                                                        }`}
+                                                        onClick={(e) => !isActive && e.preventDefault()}
+                                                    >
+                                                        <FileText size={16} /> Paper
+                                                    </a>
+                                                )}
                                                 {project.demo !== "#" && (
                                                     <a
                                                         href={project.demo}
