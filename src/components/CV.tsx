@@ -10,8 +10,8 @@ const CV = ({ isDark = true }: CVProps) => {
             company: "IDEAL Bikes",
             period: "Oct 2025 — Present",
             description:
-                "Support the company's ERP system and day-to-day IT operations. Assist users across departments with ERP workflows, data entry and troubleshooting, maintain master data and reports, and act as the link between business teams and the technical side when issues or new requirements come up.",
-            skills: ["ERP Systems", "IT Support", "Business Processes", "Troubleshooting", "Data Management", "User Training"]
+                "Support the company's ERP landscape, working with EBS and a WMS (Warehouse Management System), and maintain the company's SQL Server databases. Assist users across departments with workflows, data entry and troubleshooting, and act as the link between business teams and the technical side when issues or new requirements come up.",
+            skills: ["ERP (EBS)", "WMS", "SQL Server", "Database Maintenance", "IT Support", "Troubleshooting"]
         },
         {
             id: 1,
@@ -53,7 +53,7 @@ const CV = ({ isDark = true }: CVProps) => {
     ];
 
     const skills = [
-        "Java", "C#", "Python", "JavaScript", "SQL", "React.js", "Spring Boot", ".NET / ASP.NET Core", "Blazor", "PostgreSQL", "NoSQL (CassandraDB)", "ERP Systems", "AI Agent Workflows", "Agile/Scrum", "SDLC", "Quality Assurance (QA)", "Git/GitHub", "Microsoft Office 365", "English (C2)"
+        "Java", "C#", "Python", "JavaScript", "SQL", "React.js", "Spring Boot", ".NET / ASP.NET Core", "Blazor", "SQL Server", "PostgreSQL", "NoSQL (CassandraDB)", "ERP (EBS)", "WMS", "AI Agent Workflows", "Agile/Scrum", "SDLC", "Quality Assurance (QA)", "Git/GitHub", "Microsoft Office 365", "English (C2)"
     ];
 
     return (
