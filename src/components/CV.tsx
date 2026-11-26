@@ -5,6 +5,15 @@ interface CVProps {
 const CV = ({ isDark = true }: CVProps) => {
     const experiences = [
         {
+            id: 0,
+            role: "IT Consultant & ERP Assistant",
+            company: "IDEAL Bikes",
+            period: "Oct 2025 — Present",
+            description:
+                "Support the company's ERP system and day-to-day IT operations. Assist users across departments with ERP workflows, data entry and troubleshooting, maintain master data and reports, and act as the link between business teams and the technical side when issues or new requirements come up.",
+            skills: ["ERP Systems", "IT Support", "Business Processes", "Troubleshooting", "Data Management", "User Training"]
+        },
+        {
             id: 1,
             role: "Game Master",
             company: "Playhouse Board Game Cafe",
@@ -44,7 +53,7 @@ const CV = ({ isDark = true }: CVProps) => {
     ];
 
     const skills = [
-        "Java", "C#", "Python", "JavaScript", "SQL", "React.js", "Spring Boot", "NoSQL (CassandraDB)", "Agile/Scrum", "SDLC", "Quality Assurance (QA)", "Git/GitHub", "Microsoft Office 365", "English (C2)"
+        "Java", "C#", "Python", "JavaScript", "SQL", "React.js", "Spring Boot", ".NET / ASP.NET Core", "Blazor", "PostgreSQL", "NoSQL (CassandraDB)", "ERP Systems", "AI Agent Workflows", "Agile/Scrum", "SDLC", "Quality Assurance (QA)", "Git/GitHub", "Microsoft Office 365", "English (C2)"
     ];
 
     return (
@@ -60,6 +69,9 @@ const CV = ({ isDark = true }: CVProps) => {
                     </p>
                     <p>
                         Holding an <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-950 font-bold'}`}>Integrated Master's Degree</span> from the University of Patras (with exchange studies at Universidad Politécnica de Madrid), my experience ranges from developing full-stack Web Applications to VR Video Games and even Academic Researches.
+                    </p>
+                    <p>
+                        Since October 2025 I work as an <span className={`font-semibold ${isDark ? 'text-slate-200' : 'text-slate-950 font-bold'}`}>IT Consultant & ERP Assistant</span> at IDEAL Bikes. On the side I build projects with AI agents as my team, directing builders, testers and reviewers and verifying everything they ship.
                     </p>
 
                     {/* Skill Tags Cloud */}

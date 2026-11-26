@@ -3,6 +3,9 @@ import { Github, ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 import covidImage from "../assets/covid-tracker.png";
 import gameImage from "../assets/area-15-game.png";
 import vrImage from "../assets/vr-project.png";
+import walletImage from "../assets/wallet-api.svg";
+import luckyLureImage from "../assets/lucky-lure.svg";
+import clipperImage from "../assets/clipping-tool.svg";
 
 const MAX_VISIBILITY = 3;
 
@@ -14,6 +17,33 @@ const Projects = ({ isDark = true }: ProjectsProps) => {
     const [active, setActive] = useState(0);
 
     const projects = [
+        {
+            id: 6,
+            title: "Wallet API: Built with a Team of AI Agents",
+            description: "Digital wallet with JWT auth, transfers, withdrawals, admin-approved deposits, idempotency keys and token revocation. I led AI builder, tester and reviewer agents and verified every step: 840+ unit, integration and UI tests, two code reviews and two attack-style security passes that caught bugs the tests missed.",
+            tags: ["Java", "Spring Boot", "PostgreSQL", "React", "Spring Security", "Flyway", "AI Agents"],
+            github: "https://github.com/Xpecialist/wallet-api",
+            demo: "#",
+            image: walletImage
+        },
+        {
+            id: 7,
+            title: "Lucky Lure: .NET Slot Game",
+            description: "Fishing-themed slot game built end to end in .NET. An ASP.NET Core Minimal API decides every outcome server-side with a secure RNG, and a Blazor WebAssembly client renders the reels. Includes free spins, multipliers and a Monte-Carlo simulator that tuned the RTP to ~95.7% over 20M spins. Play money only.",
+            tags: [".NET 10", "ASP.NET Core", "Blazor WASM", "C#", "Simulation"],
+            github: "https://github.com/Xpecialist/lucky-lure",
+            demo: "#",
+            image: luckyLureImage
+        },
+        {
+            id: 8,
+            title: "VOD Clipper: AI Short-Form Clip Generator",
+            description: "Python pipeline that finds the viral moments in multi-hour stream VODs and renders vertical 1080×1920 clips. It scores audio spikes and chat hype, transcribes candidates with Whisper, lets Claude pick cuts and write titles, then renders facecam layouts with word-by-word captions using FFmpeg.",
+            tags: ["Python", "FFmpeg", "Whisper", "Claude API", "yt-dlp", "Automation"],
+            github: "https://github.com/Xpecialist/clipping-tool",
+            demo: "#",
+            image: clipperImage
+        },
         {
             id: 3,
             title: "Activity on Cloud",

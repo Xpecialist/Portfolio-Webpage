@@ -168,7 +168,7 @@ const Sidebar = ({ activeSection, isDark, toggleTheme }: SidebarProps) => {
         </h1>
 
         <h2 className={`mt-3 text-lg font-medium tracking-tight sm:text-xl ${isDark ? 'text-slate-300' : 'text-purple-700 font-semibold'}`}>
-          Full Stack Developer
+          Full Stack Developer · IT Consultant
         </h2>
         <p className={`mt-4 max-w-xs leading-normal ${isDark ? 'text-slate-400' : 'text-slate-700 font-medium'}`}>
           I build accessible, responsive, and high-performance digital experiences for web and mobile.
